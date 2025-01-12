@@ -1,4 +1,4 @@
-const apiKey = "YOUR_OPENAI_API_KEY"; // Replace with your API key
+const apiKey = "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"; // Replace with your API key
 const messagesDiv = document.getElementById('messages');
 const userInput = document.getElementById('userInput');
 
