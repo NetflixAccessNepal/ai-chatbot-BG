@@ -4,10 +4,10 @@ async function fetchAntonym(word) {
     try {
         const response = await fetch(`https://api.datamuse.com/words?rel_ant=${word}`);
         const data = await response.json();
-        return data.length > 0 ? data[0].word : null;
+        return data.length > 0 ? data[0].word : word;
     } catch (error) {
         console.error("Error fetching antonym:", error);
-        return null;
+        return word;
     }
 }
 
@@ -16,7 +16,7 @@ async function transformNegativeToPositive(inputText) {
     const transformedWords = await Promise.all(
         words.map(async (word) => {
             const antonym = await fetchAntonym(word);
-            return antonym || word;
+            return antonym;
         })
     );
     return transformedWords.join(" ");
@@ -74,7 +74,7 @@ function startGame() {
     gameStarted = true;
     updateScore();
     generateNewWord();
-    document.getElementById("game-word").classList.remove("game-end");
+    document.getElementById("word-display").classList.remove("game-end");
     startTimer();
 }
 
