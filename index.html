@@ -6,41 +6,46 @@
     <title>MindShift AI</title>
     <script defer src="script.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        /* CSS goes here */
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>MindShift AI</h1>
+    <header>
+        <h1>MindShift AI</h1>
+        <p>Transform your thoughts and boost your mindset!</p>
+    </header>
 
-    <!-- Negative to Positive Transformer Section -->
+    <!-- Section for Negative Thought Transformer -->
     <section id="thoughts-section">
-        <button id="toggle-thoughts">Transform Negative Thoughts</button>
+        <button id="toggle-thoughts">Start Transforming Thoughts</button>
         <div id="thoughts-container" class="hidden">
-            <h2>Transform Negative Thoughts</h2>
-            <textarea id="thought-input" placeholder="Enter your negative thought here..." rows="3"></textarea>
-            <br>
-            <button id="submit-thought">Transform Thought</button>
+            <h2>Transform Negative to Positive</h2>
+            <textarea id="thought-input" placeholder="Enter your negative thought..." rows="4"></textarea>
+            <button id="submit-thought">Transform</button>
             <p id="result"></p>
         </div>
     </section>
 
-    <!-- Game Section -->
+    <!-- Section for Positive-Negative Game -->
     <section id="game-container">
         <h2>Positive-Negative Game</h2>
-        <p id="word-display"></p>
-        <button id="start-game">Start Game</button>
-        <br>
-        <button id="positive-btn">Positive</button>
-        <button id="negative-btn">Negative</button>
-        <p id="score">Score: 0</p>
-        <div id="timer-bar-container">
-            <div id="timer-bar"></div>
+        <div id="game-info">
+            <button id="start-game">Start Game</button>
+            <p id="word-display">Get ready to play!</p>
+            <div id="timer-bar-container">
+                <div id="timer-bar"></div>
+            </div>
+            <div id="score-container">
+                <p id="score">Score: 0</p>
+            </div>
+            <div class="buttons-container">
+                <button id="positive-btn">Positive</button>
+                <button id="negative-btn">Negative</button>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>Created by BG-bot</p>
+        <p>MindShift AI by BG-bot</p>
     </footer>
 </body>
 </html>
