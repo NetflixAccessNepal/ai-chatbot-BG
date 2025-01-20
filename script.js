@@ -1,13 +1,26 @@
-// ------------------------ Negative to Positive Converter ------------------------
+// ------------------------ Daily Affirmation ------------------------
+const affirmations = [
+    "You are capable of achieving great things today!",
+    "Believe in yourself and all that you are.",
+    "Your potential is limitless!",
+    "You are stronger than you think!",
+    "You are worthy of success and happiness!"
+];
 
+document.getElementById("refresh-affirmation").addEventListener("click", () => {
+    const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
+    document.getElementById("daily-affirmation").innerText = randomAffirmation;
+});
+
+// ------------------------ Negative to Positive Converter ------------------------
 async function fetchAntonym(word) {
     try {
         const response = await fetch(`https://api.datamuse.com/words?rel_ant=${word}`);
         const data = await response.json();
-        return data.length > 0 ? data[0].word : word;
+        return data.length > 0 ? data[0].word : null;
     } catch (error) {
         console.error("Error fetching antonym:", error);
-        return word;
+        return null;
     }
 }
 
@@ -16,7 +29,7 @@ async function transformNegativeToPositive(inputText) {
     const transformedWords = await Promise.all(
         words.map(async (word) => {
             const antonym = await fetchAntonym(word);
-            return antonym;
+            return antonym || word;
         })
     );
     return transformedWords.join(" ");
@@ -48,6 +61,7 @@ let timeRemaining = 30;
 
 function updateScore() {
     document.getElementById("score").innerText = `Score: ${score}`;
+    document.getElementById("high-score").innerText = `High Score: ${highScore}`;
 }
 
 function generateRandomWord() {
@@ -74,7 +88,7 @@ function startGame() {
     gameStarted = true;
     updateScore();
     generateNewWord();
-    document.getElementById("word-display").classList.remove("game-end");
+    document.getElementById("game-word").classList.remove("game-end");
     startTimer();
 }
 
@@ -117,9 +131,3 @@ function endGame() {
 document.getElementById("start-game").addEventListener("click", startGame);
 document.getElementById("positive-btn").addEventListener("click", () => handleUserChoice(true));
 document.getElementById("negative-btn").addEventListener("click", () => handleUserChoice(false));
-
-// Toggle Thoughts Section
-document.getElementById("toggle-thoughts").addEventListener("click", () => {
-    const thoughtsContainer = document.getElementById("thoughts-container");
-    thoughtsContainer.classList.toggle("active");
-});
